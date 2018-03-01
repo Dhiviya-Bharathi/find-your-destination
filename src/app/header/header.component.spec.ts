@@ -10,14 +10,12 @@ describe('HeaderComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ HeaderComponent ]
     })
-    .compileComponents();
+    .compileComponents()
+    .then(() => {
+      fixture = TestBed.createComponent(HeaderComponent);
+      component = fixture.componentInstance;
+    });
   }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(HeaderComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
   it('should create', () => {
     expect(component).toBeTruthy();

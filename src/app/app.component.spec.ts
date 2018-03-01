@@ -9,6 +9,7 @@ class HeaderStubComponent {}
 class RouterOutletStubComponent { }
 
 describe('AppComponent', () => {
+  let fixture, app;
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
@@ -16,16 +17,16 @@ describe('AppComponent', () => {
         HeaderStubComponent,
         RouterOutletStubComponent
       ],
-    }).compileComponents();
+    }).compileComponents()
+    .then(() => {
+      fixture = TestBed.createComponent(AppComponent);
+      app = fixture.debugElement.componentInstance;
+    });
   }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+  it('should create the app', () => {    
     expect(app).toBeTruthy();
-  }));
-  it(`should have as title 'app'`, async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
+  });
+  it(`should have as title 'app'`, () => {
     expect(app.title).toEqual('app');
-  }));  
+  });  
 });
