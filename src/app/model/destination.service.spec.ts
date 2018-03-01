@@ -16,6 +16,19 @@ function asyncError<T>(errorObject: any) {
 describe('DestinationService', () => {
   let httpClientSpy: { get: jasmine.Spy };
   let destinationService: DestinationService;
+  const expectedDestinationList = {
+    "airports": [
+      {
+        "airport": {
+          "code": "CUR",
+          "name": "Aeropuerto Hato",
+          "city": {
+            "code": "CUR",
+            "name": "Curacao" 
+          }
+        }
+    }]
+  };
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
@@ -26,20 +39,7 @@ describe('DestinationService', () => {
     expect(destinationService).toBeTruthy();
   });
 
-  it('should return expected heroes (HttpClient called once)', () => {
-    const expectedDestinationList = {
-      "airports": [
-        {
-          "airport": {
-            "code": "CUR",
-            "name": "Aeropuerto Hato",
-            "city": {
-              "code": "CUR",
-              "name": "Curacao" 
-            }
-          }
-      }]
-    };
+  it('should return expected heroes (HttpClient called once)', () => {    
   
     httpClientSpy.get.and.returnValue(asyncData(expectedDestinationList));
   
@@ -63,4 +63,11 @@ describe('DestinationService', () => {
       error => expect(error.message).toContain('test 404 error')
     );
   });
+
+  it('should send the destination to detect the change', () => {  
+    destinationService.sendDestination(expectedDestinationList[0]);   
+    destinationService.getDestination().subscribe(destination => {
+        expect(destination).toEqual(expectedDestinationList[0]);        
+    })     
+}); 
 });
