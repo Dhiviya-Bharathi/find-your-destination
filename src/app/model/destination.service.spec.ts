@@ -1,10 +1,16 @@
 import { TestBed, inject } from '@angular/core/testing';
 import { defer } from 'rxjs/observable/defer'; 
+import { HttpErrorResponse } from '@angular/common/http';
 
+import { Destination } from './destination';
 import { DestinationService } from './destination.service';
 
 function asyncData<T>(data: T) {
   return defer(() => Promise.resolve(data));
+}
+
+function asyncError<T>(errorObject: any) {
+  return defer(() => Promise.reject(errorObject));
 }
 
 describe('DestinationService', () => {
@@ -21,25 +27,40 @@ describe('DestinationService', () => {
   });
 
   it('should return expected heroes (HttpClient called once)', () => {
-    const expectedHeroes =
-    [
-      {
-        "airport": {
-          "code": "CUR",
-          "name": "Aeropuerto Hato",
-          "city": {
+    const expectedDestinationList = {
+      "airports": [
+        {
+          "airport": {
             "code": "CUR",
-            "name": "Curacao" 
+            "name": "Aeropuerto Hato",
+            "city": {
+              "code": "CUR",
+              "name": "Curacao" 
+            }
           }
-        }
-      }];
+      }]
+    };
   
-    httpClientSpy.get.and.returnValue(asyncData(expectedHeroes));
-  /*
+    httpClientSpy.get.and.returnValue(asyncData(expectedDestinationList));
+  
     destinationService.getDestinationList().subscribe(
-      heroes => expect(heroes).toEqual(expectedHeroes, 'expected heroes'),
+      destinaionList => expect(destinaionList).toEqual(expectedDestinationList.airports, 'destinaion list'),
       fail
-    );*/
-    expect(httpClientSpy.get.calls.count()).toBe(0, 'no call');
+    );
+    expect(httpClientSpy.get.calls.count()).toBe(1, 'one call');
+  });
+
+  it('should return an error when the server returns a 404', () => {
+    const errorResponse = new HttpErrorResponse({
+      error: 'test 404 error',
+      status: 404, statusText: 'Not Found'
+    });
+  
+    httpClientSpy.get.and.returnValue(asyncError(errorResponse));
+  
+    destinationService.getDestinationList().subscribe(
+      destinaionList => fail('expected an error, not destinaionList'),
+      error => expect(error.message).toContain('test 404 error')
+    );
   });
 });

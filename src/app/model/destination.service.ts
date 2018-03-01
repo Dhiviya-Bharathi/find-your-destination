@@ -20,7 +20,7 @@ export class DestinationService {
   getDestinationList(): Observable<Destination[]> { 
     return this.http.get<{[k:string]:Destination[]}>('/api/airports')
                     .map(result => result.airports)
-                    .catch(this.handleError);             
+                    .catch(this.handleError<any>('getDestinationList'));             
   }
  
   sendDestination(destination: Destination) {
@@ -31,8 +31,17 @@ export class DestinationService {
       return this.subject.asObservable();
   }
 
-  public handleError(error: Response) {
-    return Observable.throw(error.json() || 'Server error');
+  private handleError<T> (operation = 'operation') {
+    return (error: HttpErrorResponse): Observable<T> => {
+
+      console.error(error); 
+
+      const message = (error.error instanceof ErrorEvent) ?
+        error.error.message :
+       `server returned code ${error.status} with body "${error.error}"`;
+
+      throw new Error(`${operation} failed: ${message}`);
+    };
   }
 
 }
