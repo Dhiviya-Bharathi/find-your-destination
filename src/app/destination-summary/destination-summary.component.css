@@ -1,0 +1,27 @@
+.summary-container {
+    width: 80%;
+    margin: auto;
+    height: 400px;  
+    background-color: #fff;
+    box-shadow: 0px 1px 10px #aaa;
+}
+
+.summary-image {
+    width: 58%;
+    height: 100%;
+    display: inline-block;
+    background-image: url(../../assets/images/home.jpg);
+    background-position: center;
+}
+
+.summary-content {
+    width: 38%;
+    height: 100%;
+    float: right;
+    padding: 20px;
+}
+
+.description {
+    margin-top: 16px;
+    font-size: 14px;
+}

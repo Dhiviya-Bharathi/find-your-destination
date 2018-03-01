@@ -1,0 +1,84 @@
+.search-container {
+    width: 50%;
+    margin: auto;
+    height: 150px;  
+    background-color: #fff;
+    box-shadow: 0px 1px 10px #aaa;
+    padding: 20px;
+}
+.continue-wrap {
+    width: 50%;
+    margin: 24px auto;    
+}
+
+.continue-wrap button {
+    float: right;
+    background-color: #fff;
+    border: 2px solid #00a1de;
+    color: #00a1de;
+    font-size: 16px;
+    padding: 8px 24px;
+    border-radius: 20px;
+    box-shadow: 1px 2px 3px #aaa;
+    cursor: pointer;
+}
+
+.form-wrap, .list-options-wrap {
+    width: 100%;    
+}
+
+.form-group {
+    width: 70%;
+    display: inline-block;
+}
+.button-wrap {
+    width: 20%;
+    display: inline-block;
+}
+
+.form-wrap label {
+    display: block;
+    color: #00a1de;
+    font-size: 26px;
+}
+
+.form-wrap input {
+    width: 100%;
+    border: 0;
+    border-bottom: 2px solid #00a1de;
+    font-size: 14px;
+    color: #333;
+    margin-top: 16px;
+    padding: 8px 4px;
+}
+
+.list-options-wrap {
+    margin-top: 16px;
+}
+
+.list-options-wrap ul { 
+    margin: 0;
+    padding: 0;
+}
+
+.list-options-wrap li {
+    list-style: none;
+    font-size: 12px;
+    display: inline-block;
+    border: 1px solid #aaa;
+    padding: 3px 6px;
+    margin: 10px 5px;
+    border-radius: 10px;
+    background-color: #eee;
+    cursor: pointer;
+    box-shadow: 0px 1px 1px #aaa;
+}
+
+.remove-option {
+    font-weight: bold;
+    background-color: transparent;
+    border: none;
+    margin-left: -25px;
+    cursor: pointer;
+    padding: 10px;
+}

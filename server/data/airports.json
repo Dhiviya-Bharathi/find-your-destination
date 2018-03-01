@@ -1,0 +1,88 @@
+{
+  "airports": [
+    {
+      "airport": {
+        "code": "CUR",
+        "name": "Aeropuerto Hato",
+        "city": {
+          "code": "CUR",
+          "name": "Curacao",
+          "imageUrl": "../../assets/images/cur.jpg",
+          "description": "Curaçao, a Dutch Caribbean island, is known for its beaches tucked into coves and its expansive coral reefs rich with marine life. The capital, Willemstad, has pastel-colored colonial architecture, floating Queen Emma Bridge and the sand-floored, 17th-century Mikvé Israel-Emanuel Synagogue. It’s also a gateway to western beaches like Blue Bay, a popular diving site."
+        }
+      }
+    },
+    {
+      "airport": {
+        "code": "CWL",
+        "name": "Cardiff-Wales Airport",
+        "city": {
+          "code": "CWL",
+          "name": "Cardiff",
+          "imageUrl": "../../assets/images/cwl.jpg",
+          "description": "Cardiff is a port city on the south coast of Wales, where the River Taff meets the Severn Estuary. It was proclaimed the nation’s capital in 1955. The revitalized waterfront at Cardiff Bay includes the Wales Millennium Centre, home of the national opera, orchestra, theater and dance companies, plus shops at Mermaid Quay. Architect Richard Rogers’ strikingly modern Senedd building houses the Welsh National Assembly."
+        }
+      }
+    },
+    {
+      "airport": {
+        "code": "DAR",
+        "name": "DAR",
+        "city": {
+          "code": "DAR",
+          "name": "Dar Es Salaam",
+          "imageUrl": "../../assets/images/dar.jpg",
+          "description": "Dar es Salaam, a major city and commercial port on Tanzania’s Indian Ocean coast, grew from a fishing village. The open-air Village Museum has re-created the traditional homes of local and other Tanzanian tribes and hosts tribal dancing. It’s part of the National Museum, which offers Tanzanian history exhibits, including the fossils of human ancestors found by anthropologist Louis Leakey."
+        }
+      }
+    },
+    {
+      "airport": {
+        "code": "DEL",
+        "name": "Indira Gandhi International",
+        "city": {
+          "code": "DEL",
+          "name": "Delhi",
+          "imageUrl": "../../assets/images/del.jpg",
+          "description": "India’s capital and major gateway to the country, contemporary Delhi is bustling metropolis, which successfully combines in its fold the ancient and the modern. Its strategic location was one of the prime reasons why successive dynasties chose it as their seat of power. It is not surprising then that what constitutes Delhi today, is a conglomerate of seven cities. Down the ages the region in and around modern Delhi saw Lalkot built in the mid-11th century, Siri established by Allauddin Khilji, Tughlakabad, and Ferozabad built by the Tughlaks followed by the city of the Lodis and then came Shahjahanabad, capital of the Mughals under Shah Jahan."
+        }
+      }
+    },
+    {
+      "airport": {
+        "code": "DMM",
+        "name": "King Fahad International",
+        "city": {
+          "code": "DMM",
+          "name": "Dammam",
+          "imageUrl": "../../assets/images/dmm.jpg",
+          "description": "Dammam, on the Arabian Gulf, is the capital city of Saudi Arabia’s Eastern Province. Its tree-lined corniche walkway is known for King Abdullah Park’s walkways and the man-made Coral Island. Exhibits at Dammam Regional Museum include Stone Age finds. Traditional goods feature at Share Al-Hob market. In Al-Qatif city, the Tarout Castle, an ancient quartet of red-clay towers around a quadrangle, sits on Tarout Island."
+        }
+      }
+    },
+    {
+      "airport": {
+        "code": "DPS",
+        "name": "Denpasar",
+        "city": {
+          "code": "DPS",
+          "name": "Denpasar",
+          "imageUrl": "../../assets/images/dps.jpg",
+          "description": "Denpasar is the capital city and main hub of the Indonesian province of Bali, in the southern part of the island. Laid-back Sanur Beach on the east coast offers sunrise views. The nearby Pura Blanjong Temple contains a stone pillar with a 10th-century inscription. The Bali Museum displays a large collection of Balinese cultural artifacts, including traditional costumes and religious items."
+        }
+      }
+    },
+    {
+      "airport": {
+        "code": "DRS",
+        "name": "Dresden Airport",
+        "city": {
+          "code": "DRS",
+          "name": "Dresden",
+          "imageUrl": "../../assets/images/drs.jpg",
+          "description": "Dresden, capital of the eastern German state of Saxony, is distinguished by the celebrated art museums and classic architecture of its reconstructed old town. Completed in 1743 and rebuilt after WWII, the baroque church Frauenkirche is famed for its grand dome. The Versailles-inspired Zwinger palace houses museums including Gemäldegalerie Alte Meister, exhibiting masterpieces of art like Raphael’s “Sistine Madonna.”"
+        }
+      }
+    }
+  ]
+}

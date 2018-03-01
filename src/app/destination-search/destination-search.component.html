@@ -1,0 +1,34 @@
+<div class="search-container"> 
+    <div class="form-wrap">      
+        <div class="form-group">
+            <label for="destination">Choose your destination here</label>
+
+            <input type="text" class="form-control" id="destination" name="destinationSearch" 
+                [(ngModel)]="destinationSearchValue"            
+                (input)="showOptions($event.target.value)"
+                required>
+        </div>            
+        <div class="button-wrap">
+            <button type="button" class="btn btn-success remove-option"
+                *ngIf="destinationSearchValue"
+                (click)="selectedDestination ? removeOption() : pressBackspace()">
+                X</button> 
+        </div>          
+    </div> 
+
+    <div class="list-options-wrap">
+        <ul>
+            <li *ngFor="let destination of destinationSearchResult"
+                (click)="selectOption(destination)">
+                {{ destination.airport.name }}({{ destination.airport.code }}), {{ destination.airport.city.name }}
+            </li>
+        </ul>
+    </div>  
+</div>
+
+<div class="continue-wrap">
+    <button type="button" class="btn btn-success continue"
+                *ngIf="selectedDestination"
+                (click)="goToSummary()">
+                Continue ></button>
+</div>

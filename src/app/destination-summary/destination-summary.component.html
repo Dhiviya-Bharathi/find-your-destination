@@ -1,0 +1,9 @@
+<div class="summary-container">
+  <div class="summary-image" [style.background-image]="'url('+destination.airport.city.imageUrl+')'"></div>
+  <div class="summary-content">
+    <div class="airport-name">
+      {{destination.airport.name}}, {{destination.airport.city.name}}
+    </div>  
+    <div class="description">{{destination.airport.city.description}}</div>
+  </div>  
+</div>
