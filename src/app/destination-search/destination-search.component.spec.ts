@@ -86,7 +86,7 @@ describe('DestinationSearchComponent', () => {
       component.destinationSearchResult = mockDestinationList;
       fixture.detectChanges();      
       listElement = compiled.querySelector('li');      
-      listElement.dispatchEvent(new Event('click'));   
+      listElement.click();   
 
       expect(component.selectedDestination).toBeDefined();
       expect(component.destinationSearchValue).toBe(expectedSearchValue);
@@ -100,7 +100,7 @@ describe('DestinationSearchComponent', () => {
       fixture.detectChanges(); 
            
       buttonElement = compiled.querySelectorAll('button')[0];            
-      buttonElement.dispatchEvent(new Event('click'));   
+      buttonElement.click();    
 
       expect(component.selectedDestination).toBeNull();
     });
@@ -112,7 +112,7 @@ describe('DestinationSearchComponent', () => {
       fixture.detectChanges(); 
            
       buttonElement = compiled.querySelectorAll('button')[0];            
-      buttonElement.dispatchEvent(new Event('click'));   
+      buttonElement.click();   
 
       expect(component.selectedDestination).toBeNull();
     });
@@ -124,7 +124,7 @@ describe('DestinationSearchComponent', () => {
       fixture.detectChanges(); 
            
       buttonElement = compiled.querySelectorAll('button')[0];            
-      buttonElement.dispatchEvent(new Event('click'));   
+      buttonElement.click();   
 
       expect(component.destinationSearchValue).not.toBe(testValue);
     });
@@ -136,7 +136,7 @@ describe('DestinationSearchComponent', () => {
       fixture.detectChanges(); 
            
       buttonElement = compiled.querySelectorAll('button')[0];
-      buttonElement.dispatchEvent(new Event('click'));  
+      buttonElement.click(); 
       
       const spy = router.navigateByUrl as jasmine.Spy;
       const navArgs = spy.calls.first().args[0];
