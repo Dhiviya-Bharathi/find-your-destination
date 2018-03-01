@@ -43,7 +43,6 @@ describe('DestinationSummaryComponent', () => {
   }));
 
   beforeEach(()=> {
-    component.ngOnInit();
     fixture.detectChanges();
   });
 

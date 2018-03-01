@@ -46,7 +46,6 @@ describe('DestinationSearchComponent', () => {
   }));
 
   beforeEach(()=> {
-    component.ngOnInit();
     fixture.detectChanges();
   });
 
@@ -105,18 +104,6 @@ describe('DestinationSearchComponent', () => {
       expect(component.selectedDestination).toBeNull();
     });
 
-    it('should remove selection based on remove button click', () => {
-      let buttonElement;      
-      component.selectedDestination = mockDestinationList[0];
-      component.destinationSearchValue = 'te';
-      fixture.detectChanges(); 
-           
-      buttonElement = compiled.querySelectorAll('button')[0];            
-      buttonElement.click();   
-
-      expect(component.selectedDestination).toBeNull();
-    });
-
     it('should backspace the input on remove button click', () => {
       let buttonElement;  
       let testValue = 'test';
@@ -140,8 +127,8 @@ describe('DestinationSearchComponent', () => {
       
       const spy = router.navigateByUrl as jasmine.Spy;
       const navArgs = spy.calls.first().args[0];
-
       const code = component.destinationList[0].airport.code.toLowerCase();
+      
       expect(navArgs).toBe('/summary/' + code, 'should nav to Summary for test');
     });
   });

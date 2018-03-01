@@ -6,7 +6,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { filter } from 'rxjs/operators';
 import 'rxjs/add/operator/catch';
 
-
 import { Destination } from './destination';
 
 @Injectable()
@@ -19,16 +18,16 @@ export class DestinationService {
 
   getDestinationList(): Observable<Destination[]> { 
     return this.http.get<{[k:string]:Destination[]}>('/api/airports')
-                    .map(result => result.airports)
-                    .catch(this.handleError<any>('getDestinationList'));             
+      .map(result => result.airports)
+      .catch(this.handleError<any>('getDestinationList'));             
   }
  
   sendDestination(destination: Destination) {
-      this.subject.next(destination);
+    this.subject.next(destination);
   }
 
   getDestination(): Observable<Destination> {
-      return this.subject.asObservable();
+    return this.subject.asObservable();
   }
 
   private handleError<T> (operation = 'operation') {
