@@ -1,4 +1,4 @@
-# FindYourDestination
+# Find Your Destination
 
 ![Alt Text](https://github.com/Dhiviya-Bharathi/find-your-destination/blob/master/output.gif)
 
