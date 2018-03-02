@@ -1,12 +1,9 @@
 import { TestBed, async } from '@angular/core/testing';
-import { Component } from '@angular/core';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
 import { AppComponent } from './app.component';
 
 @Component({selector: 'app-header', template: ''})
 class HeaderStubComponent {}
-
-@Component({selector: 'router-outlet', template: ''})
-class RouterOutletStubComponent { }
 
 describe('AppComponent', () => {
   let fixture, app;
@@ -14,19 +11,19 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        HeaderStubComponent,
-        RouterOutletStubComponent
+        HeaderStubComponent
       ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents()
     .then(() => {
       fixture = TestBed.createComponent(AppComponent);
       app = fixture.debugElement.componentInstance;
     });
   }));
-  it('should create the app', () => {    
+  it('should create the app', () => {
     expect(app).toBeTruthy();
   });
   it(`should have as title 'app'`, () => {
     expect(app.title).toEqual('app');
-  });  
+  });
 });

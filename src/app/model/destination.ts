@@ -1,12 +1,11 @@
 
 export interface Destination {
-    airport: {        
+    airport: {
         code: string;
-        name: string;    
+        name: string;
         city: {
             code: string;
             name: string;
         }
-    }
+    };
 }
-

@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute }     from '@angular/router';
-import { Observable }         from 'rxjs/Observable';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/map';
 
@@ -19,20 +19,20 @@ export class DestinationSummaryComponent implements OnInit, OnDestroy  {
   destination: Destination;
   subscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private destinationService: DestinationService) {}  
+  constructor(private route: ActivatedRoute, private destinationService: DestinationService) {}
 
-  ngOnInit() {    
+  ngOnInit() {
     this.route.paramMap
       .map(params =>  params.get('code'))
       .subscribe(code => {
-        this.destinationCode = code;        
+        this.destinationCode = code;
       });
-      
+
     this.subscription = this.destinationService.getDestination()
       .subscribe(destination => this.destination = destination);
   }
 
-  ngOnDestroy() {    
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 

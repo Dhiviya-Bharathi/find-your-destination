@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -10,7 +10,7 @@ import { Destination } from '../model/destination';
   templateUrl: './destination-search.component.html',
   styleUrls: ['./destination-search.component.css']
 })
-export class DestinationSearchComponent implements OnInit {
+export class DestinationSearchComponent implements OnInit, OnDestroy {
 
   destinationList: Destination[];
   destinationSearchResult: Destination[];
@@ -28,20 +28,20 @@ export class DestinationSearchComponent implements OnInit {
   getDestinationList(): void {
     this.subscription = this.destinationService.getDestinationList()
         .subscribe(
-          destinationList => this.destinationList = destinationList,          
+          destinationList => this.destinationList = destinationList,
           error => console.log(error)
         );
   }
 
-  showOptions(destinationSearchValue): void {    
+  showOptions(destinationSearchValue): void {
     this.destinationSearchResult = [
       ...this.filterList<Destination[]>(this.destinationList, destinationSearchValue, 'code'),
       ...this.filterList<Destination[]>(this.destinationList, destinationSearchValue, 'name')
-    ].slice(0,3);
+    ].slice(0, 3);
   }
 
   selectOption(selectedDestination): void {
-    let airport = selectedDestination.airport;
+    const airport = selectedDestination.airport;
     this.userSearchValue = this.destinationSearchValue;
     this.selectedDestination = selectedDestination;
     this.destinationSearchValue = `${airport.name}(${airport.code}), ${airport.city.name}`;
@@ -61,18 +61,18 @@ export class DestinationSearchComponent implements OnInit {
 
   goToSummary(): void {
     this.destinationService.sendDestination(this.selectedDestination);
-    this.router.navigateByUrl('/summary/'+this.selectedDestination.airport.code.toLowerCase());
-  } 
+    this.router.navigateByUrl('/summary/' + this.selectedDestination.airport.code.toLowerCase());
+  }
 
-  ngOnDestroy() {    
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 
   private filterList<T>(list, searchValue, attr): T {
-    return list.filter(item => { 
-      let attrValue = item.airport[attr].toLowerCase();        
-      let searchValueLower = searchValue.toLowerCase();
+    return list.filter(item => {
+      const attrValue = item.airport[attr].toLowerCase();
+      const searchValueLower = searchValue.toLowerCase();
       return searchValueLower ? attrValue.startsWith(searchValueLower) : false;
-    })
+    });
   }
 }

@@ -13,15 +13,15 @@ export class DestinationService {
 
   private subject = new BehaviorSubject<any>({text: 'message'});
   destinationList: Destination[];
-  
+
   constructor(private http: HttpClient) {}
 
-  getDestinationList(): Observable<Destination[]> { 
-    return this.http.get<{[k:string]:Destination[]}>('/api/airports')
+  getDestinationList(): Observable<Destination[]> {
+    return this.http.get<{ [k: string]: Destination[] }>('/api/airports')
       .map(result => result.airports)
-      .catch(this.handleError<any>('getDestinationList'));             
+      .catch(this.handleError<any>('getDestinationList'));
   }
- 
+
   sendDestination(destination: Destination) {
     this.subject.next(destination);
   }
@@ -33,7 +33,7 @@ export class DestinationService {
   private handleError<T> (operation = 'operation') {
     return (error: HttpErrorResponse): Observable<T> => {
 
-      console.error(error); 
+      console.error(error);
 
       const message = (error.error instanceof ErrorEvent) ?
         error.error.message :

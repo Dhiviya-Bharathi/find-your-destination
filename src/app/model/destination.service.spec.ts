@@ -1,5 +1,5 @@
 import { TestBed, inject } from '@angular/core/testing';
-import { defer } from 'rxjs/observable/defer'; 
+import { defer } from 'rxjs/observable/defer';
 import { HttpErrorResponse } from '@angular/common/http';
 
 import { Destination } from './destination';
@@ -17,14 +17,14 @@ describe('DestinationService', () => {
   let httpClientSpy: { get: jasmine.Spy };
   let destinationService: DestinationService;
   const expectedDestinationList = {
-    "airports": [
+    'airports': [
       {
-        "airport": {
-          "code": "CUR",
-          "name": "Aeropuerto Hato",
-          "city": {
-            "code": "CUR",
-            "name": "Curacao" 
+        'airport': {
+          'code': 'CUR',
+          'name': 'Aeropuerto Hato',
+          'city': {
+            'code': 'CUR',
+            'name': 'Curacao'
           }
         }
     }]
@@ -32,17 +32,17 @@ describe('DestinationService', () => {
 
   beforeEach(() => {
     httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    destinationService = new DestinationService(<any> httpClientSpy);   
+    destinationService = new DestinationService(<any> httpClientSpy);
   });
 
   it('should be created', () => {
     expect(destinationService).toBeTruthy();
   });
 
-  it('should return expected heroes (HttpClient called once)', () => {    
-  
+  it('should return expected heroes (HttpClient called once)', () => {
+
     httpClientSpy.get.and.returnValue(asyncData(expectedDestinationList));
-  
+
     destinationService.getDestinationList().subscribe(
       destinaionList => expect(destinaionList).toEqual(expectedDestinationList.airports, 'destinaion list'),
       fail
@@ -55,19 +55,19 @@ describe('DestinationService', () => {
       error: 'test 404 error',
       status: 404, statusText: 'Not Found'
     });
-  
+
     httpClientSpy.get.and.returnValue(asyncError(errorResponse));
-  
+
     destinationService.getDestinationList().subscribe(
       destinaionList => fail('expected an error, not destinaionList'),
       error => expect(error.message).toContain('test 404 error')
     );
   });
 
-  it('should send the destination to detect the change', () => {  
-    destinationService.sendDestination(expectedDestinationList[0]);   
+  it('should send the destination to detect the change', () => {
+    destinationService.sendDestination(expectedDestinationList[0]);
     destinationService.getDestination().subscribe(destination => {
-        expect(destination).toEqual(expectedDestinationList[0]);        
-    })     
-}); 
+        expect(destination).toEqual(expectedDestinationList[0]);
+    });
+  });
 });

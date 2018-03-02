@@ -8,10 +8,7 @@ import { DestinationService } from '../model/destination.service';
 import { Destination } from '../model/destination';
 
 describe('DestinationSearchComponent', () => {
-  let component: DestinationSearchComponent;
-  let fixture: ComponentFixture<DestinationSearchComponent>;
-  let destinationServiceStub: Partial<DestinationService>;
-  let mockDestinationList: Destination[] = [{
+  const mockDestinationList: Destination[] = [{
     airport: {
       code: 'TES',
       name: 'Test',
@@ -21,15 +18,17 @@ describe('DestinationSearchComponent', () => {
       }
     }
   }];
-  let destinationService, router;
-  
+  let component: DestinationSearchComponent;
+  let fixture: ComponentFixture<DestinationSearchComponent>;
+  let router;
+
   beforeEach(async(() => {
     const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
     const destinationServiceSpy = jasmine.createSpyObj('DestinationService', ['getDestinationList', 'sendDestination']);
     TestBed.configureTestingModule({
       declarations: [ DestinationSearchComponent ],
       imports: [ FormsModule ],
-      providers: [ 
+      providers: [
         { provide: DestinationService, useValue: destinationServiceSpy },
         { provide: Router, useValue: routerSpy }
       ]
@@ -45,19 +44,19 @@ describe('DestinationSearchComponent', () => {
     });
   }));
 
-  beforeEach(()=> {
+  beforeEach(() => {
     fixture.detectChanges();
   });
 
   /* COMPONENT BEFORE INIT  */
 
-  it('should create', async(() => {        
+  it('should create', async(() => {
     expect(component).toBeTruthy();
   }));
 
   /* COMPONENT INIT */
 
-  it('should have value for destinationList on ngOnInit', () => {    
+  it('should have value for destinationList on ngOnInit', () => {
     expect(component.destinationList).toBeDefined();
   });
 
@@ -68,24 +67,25 @@ describe('DestinationSearchComponent', () => {
       compiled = fixture.debugElement.nativeElement;
     });
 
-    it('should filter list based on user input', () => {      
-      const searchInput = compiled.querySelector('input');    
+    it('should filter list based on user input', () => {
+      const searchInput = compiled.querySelector('input');
       searchInput.value = 'te';
       searchInput.dispatchEvent(new Event('input'));
       fixture.detectChanges();
-    
+
       expect(component.destinationSearchResult.length).not.toBe(0);
       expect(component.destinationSearchResult.length).toBeLessThanOrEqual(3);
     });
 
     it('should select option from list based on user click', () => {
+      const mockAirport = mockDestinationList[0].airport;
+      const expectedSearchValue = `${mockAirport.name}(${mockAirport.code}), ${mockAirport.city.name}`;
       let listElement;
-      let mockAirport = mockDestinationList[0].airport;
-      let expectedSearchValue = `${mockAirport.name}(${mockAirport.code}), ${mockAirport.city.name}`;
+
       component.destinationSearchResult = mockDestinationList;
-      fixture.detectChanges();      
-      listElement = compiled.querySelector('li');      
-      listElement.click();   
+      fixture.detectChanges();
+      listElement = compiled.querySelector('li');
+      listElement.click();
 
       expect(component.selectedDestination).toBeDefined();
       expect(component.destinationSearchValue).toBe(expectedSearchValue);
@@ -93,42 +93,41 @@ describe('DestinationSearchComponent', () => {
     });
 
     it('should remove selection based on remove button click', () => {
-      let buttonElement;      
+      let buttonElement;
       component.selectedDestination = mockDestinationList[0];
       component.destinationSearchValue = 'te';
-      fixture.detectChanges(); 
-           
-      buttonElement = compiled.querySelectorAll('button')[0];            
-      buttonElement.click();    
+      fixture.detectChanges();
+
+      buttonElement = compiled.querySelectorAll('button')[0];
+      buttonElement.click();
 
       expect(component.selectedDestination).toBeNull();
     });
 
     it('should backspace the input on remove button click', () => {
-      let buttonElement;  
-      let testValue = 'test';
+      const testValue = 'test';
+      let buttonElement;
       component.destinationSearchValue = testValue;
-      fixture.detectChanges(); 
-           
-      buttonElement = compiled.querySelectorAll('button')[0];            
-      buttonElement.click();   
+      fixture.detectChanges();
+
+      buttonElement = compiled.querySelectorAll('button')[0];
+      buttonElement.click();
 
       expect(component.destinationSearchValue).not.toBe(testValue);
     });
 
     it('should navigate to summary page on continue button click', () => {
-      let buttonElement; 
-      router = fixture.debugElement.injector.get(Router);
-      component.selectedDestination = mockDestinationList[0];
-      fixture.detectChanges(); 
-           
-      buttonElement = compiled.querySelectorAll('button')[0];
-      buttonElement.click(); 
-      
       const spy = router.navigateByUrl as jasmine.Spy;
       const navArgs = spy.calls.first().args[0];
       const code = component.destinationList[0].airport.code.toLowerCase();
-      
+      let buttonElement;
+      router = fixture.debugElement.injector.get(Router);
+      component.selectedDestination = mockDestinationList[0];
+      fixture.detectChanges();
+
+      buttonElement = compiled.querySelectorAll('button')[0];
+      buttonElement.click();
+
       expect(navArgs).toBe('/summary/' + code, 'should nav to Summary for test');
     });
   });

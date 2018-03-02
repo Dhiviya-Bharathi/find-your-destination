@@ -21,7 +21,7 @@ describe('HeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should render title in a h1 tag', () => {    
+  it('should render title in a h1 tag', () => {
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('h1').textContent).toContain('Find Your Destination');
   });
